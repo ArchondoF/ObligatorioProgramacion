@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataModel\Repositories\BardoRepository.cs" />
+    <Compile Include="DataModel\Repositories\EstadoBardosRepository.cs" />
     <Compile Include="DataModel\Repositories\FotosRepository.cs" />
     <Compile Include="DataModel\Repositories\PeleadorRepository.cs" />
     <Compile Include="DataModel\UnitOfWork.cs" />

@@ -67,5 +67,36 @@ namespace InternalServices.Controllers
                 }
             }
         }
+
+        [HttpPost]
+        [Authorize]
+        public IHttpActionResult AddFoto([FromBody] FotoModel foto)
+        {
+            using (UnitOfWork uow = new UnitOfWork())
+            {
+                uow.BeginTransaction();
+
+                try
+                {
+                   
+                    var fotoEntity = new Fotos()
+                    {
+                        IdPeleador = foto.IdPeleador,
+                        Ruta = foto.Ruta
+                    };
+
+                    uow.FotosRepository.AddFoto(fotoEntity);
+                    uow.SaveChanges();
+                    uow.Commit();
+
+                    return Ok();
+                }
+                catch (Exception ex)
+                {
+                    uow.Rollback();
+                    return InternalServerError(ex);
+                }
+            }
+        }
     }
 }

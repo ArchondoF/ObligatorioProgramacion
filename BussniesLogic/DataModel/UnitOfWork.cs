@@ -1,4 +1,5 @@
 ﻿using BussniesLogic.DataModel.Reposiroties;
+using BussniesLogic.DataModel.Repositories;
 using ObligatorioProgramacion.DataAcces;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,7 @@ namespace BussniesLogic.DataModel
         public PeleadorRepository PeleadorRepository { get; set; }
         public BardoRepository BardoRepository { get; set; }
         public FotosRepository FotosRepository { get; set; }
+        public EstadoBardosRepository EstadoBardosRepository { get; set; }
 
         public UnitOfWork()
         {
@@ -24,7 +26,8 @@ namespace BussniesLogic.DataModel
             this.BardoRepository = new BardoRepository(this._context);
             this.PeleadorRepository = new PeleadorRepository(this._context);
             this.FotosRepository = new FotosRepository(this._context);
-            
+            this.EstadoBardosRepository = new EstadoBardosRepository(this._context);
+
         }
 
         public void SaveChanges()

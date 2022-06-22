@@ -24,7 +24,7 @@ namespace BussniesLogic.Services.Seguridad
                     //Hashear password
                     var hashedPassword = GenerarHashSHA256(password, usuario.PasswordSalt.Trim());
 
-                    //Comparo passwords hasheadas con el mismo salt, si coinciden, se que las credenciales son validas
+                    //Comparacion de password de usuario con con el hashedpasword del input
                     if (usuario.Password == hashedPassword)
                         credencialesValidas = true;
                 }
