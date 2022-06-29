@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using WebApplication.Services
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -25,6 +26,20 @@
                     <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
                     <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
                 </ul>
+                @if (SeguridadService.ExisteSesion())
+                {
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>@Html.ActionLink("Perfil", "EditarPerfil", "Seguridad")</li>
+                        <li>@Html.ActionLink("Cerrar sesion", "CerrarSesion", "Seguridad")</li>
+                    </ul>
+                }
+                else
+                {
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>@Html.ActionLink("Registrarse", "RegistrarUsuario", "Seguridad")</li>
+                        <li>@Html.ActionLink("InicioSesion", "InicioSesion", "Seguridad")</li>
+                    </ul>
+                }
             </div>
         </div>
     </div>

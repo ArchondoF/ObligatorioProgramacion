@@ -15,6 +15,7 @@ namespace InternalServices.Controllers
     {
         [HttpPost]
         [AllowAnonymous]
+        [Route("api/Peleador/AddPeleador")]
         public IHttpActionResult AddPeleador([FromBody] PeleadorModel peleador)
         {
             using (UnitOfWork uow = new UnitOfWork())
@@ -70,6 +71,7 @@ namespace InternalServices.Controllers
 
         [HttpPost]
         [Authorize]
+        [Route("api/Peleador/AddFoto")]
         public IHttpActionResult AddFoto([FromBody] FotoModel foto)
         {
             using (UnitOfWork uow = new UnitOfWork())

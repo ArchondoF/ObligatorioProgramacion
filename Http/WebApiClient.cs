@@ -61,15 +61,13 @@ namespace Http
 
         public HttpResponseMessage Post<T>(Uri adress, T transferObject)
         {
-            this._client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("aplication/json"));
+            this._client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, adress);
 
-            request.Content = new StringContent(JsonConvert.SerializeObject(transferObject), Encoding.UTF8, "aplication/json");
+            request.Content = new StringContent(JsonConvert.SerializeObject(transferObject), Encoding.UTF8, "application/json");
 
-            var response = this._client.SendAsync(request).Result;
-
-            return response;
+            return this._client.SendAsync(request).Result;
         }
 
         public HttpResponseMessage Put<T>(Uri adress, T transferObject)

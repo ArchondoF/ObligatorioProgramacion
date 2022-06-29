@@ -170,11 +170,6 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
-    <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -190,6 +185,10 @@
     <ProjectReference Include="..\ObligatorioProgramacion\ObligatorioProgramacion.csproj">
       <Project>{246D7537-60A6-4418-BD80-E868A00E43B4}</Project>
       <Name>ObligatorioProgramacion</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TransferObjects\TransferObjects.csproj">
+      <Project>{2b2b24b9-8a99-44f5-a175-fd7608703c66}</Project>
+      <Name>TransferObjects</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

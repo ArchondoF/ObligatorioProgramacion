@@ -22,9 +22,15 @@ namespace BussniesLogic.DataModel.Reposiroties
             this._context.Fotos.Add(foto);
         }
 
-        public List<Fotos> GetFotosById(long id)
+        public List<string> GetRutasFotosById(long id)
         {
-            return this._context.Fotos.Where(f => f.IdPeleador == id).ToList();
+            List<Fotos> colFotos =  this._context.Fotos.Where(f => f.IdPeleador == id).ToList();
+            List<string> colRutas = new List<string>();
+            foreach (var rutas in colFotos)
+            {
+                colRutas.Add(rutas.Ruta);
+            }
+            return colRutas;
         }
 
 
