@@ -27,7 +27,7 @@ namespace BussniesLogic.Services.Seguridad
                     //Comparacion de password de usuario con con el hashedpasword del input
                     if (usuario.Password == hashedPassword)
                         credencialesValidas = true;
-                }
+                }//asdasdas
             }
 
             return credencialesValidas;
