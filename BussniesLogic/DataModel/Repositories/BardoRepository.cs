@@ -25,6 +25,11 @@ namespace BussniesLogic.DataModel.Reposiroties
         {
             return this._context.Bardos.Where(p => p.IdPeleadorUno == id).ToList();
         }
+        public long GetIdBardoById(long peleador1 , long peleador2)
+        {
+            Bardos bardo= this._context.Bardos.Where(b => b.IdPeleadorUno == peleador1 && b.IdPeleadorDos == peleador2 || b.IdPeleadorUno == peleador2 && b.IdPeleadorDos == peleador1).FirstOrDefault();
+            return bardo.IdBardo;
+        }
 
         public List<Bardos> GetBardos()
         {

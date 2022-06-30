@@ -72,6 +72,10 @@
       <Project>{246D7537-60A6-4418-BD80-E868A00E43B4}</Project>
       <Name>ObligatorioProgramacion</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TransferObjects\TransferObjects.csproj">
+      <Project>{2B2B24B9-8A99-44F5-A175-FD7608703C66}</Project>
+      <Name>TransferObjects</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

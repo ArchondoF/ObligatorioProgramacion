@@ -6,7 +6,7 @@ using System.Web;
 
 namespace InternalServices.Models
 {
-    public class PeleadorModel
+    public class PeleadorModelAgregar
     {
         public long IdPeliador { get; set; }
 
@@ -43,6 +43,6 @@ namespace InternalServices.Models
         public string Ciudad { get; set; }
         [Required]
         [StringLength(255)]
-        public List<string> Fotos { get; set; }
+        public string Foto { get; set; }
     }
 }

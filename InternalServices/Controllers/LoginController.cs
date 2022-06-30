@@ -13,16 +13,19 @@ namespace InternalServices.Controllers
     public class LoginController : ApiController
     {
         [HttpPost]
+        [Route("api/Login/Autenticar")]
         [AllowAnonymous]
         public IHttpActionResult Autenticar([FromBody] LoginModel login)
         {
             try
             {
                 SecurityServices securityService = new SecurityServices();
-                if (securityService.ValidarCredencialesUsuario(login.Mail, login.Password))
+                var usuarioValido = securityService.ValidarCredencialesUsuario(login.Correo , login.Password); 
+                if (usuarioValido != null)
                 {
-                    var token = GeneradorDeTokens.GenerarToken(login.Mail);
-                    return Ok(token);
+                    var token = GeneradorDeTokens.GenerarToken(login.Correo);
+                    usuarioValido.Token = token;
+                    return Ok(usuarioValido);
                 }
                 else
                 {
