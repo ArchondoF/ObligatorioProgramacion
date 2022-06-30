@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace InternalServices.Models
+namespace WebApplication.Models
 {
     public class PeleadorModel
     {

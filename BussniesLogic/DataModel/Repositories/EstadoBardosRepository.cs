@@ -22,9 +22,9 @@ namespace BussniesLogic.DataModel.Repositories
             this._context.EstadoBardos.Add(estadoBardo);
         }
 
-        public List<EstadoBardos> GetEstadoBardosById(long id)
+        public EstadoBardos GetEstadoBardosById(long id)
         {
-            return this._context.EstadoBardos.Where(f => f.IdBardo == id).ToList();
+            return this._context.EstadoBardos.Where(p => p.IdBardo == id).FirstOrDefault();
         }
 
 

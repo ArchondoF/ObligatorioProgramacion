@@ -157,6 +157,7 @@
     <Compile Include="Models\FotoModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\PeleadorModel.cs" />
+    <Compile Include="Models\PeleadorModelAgregar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Seguridad\GeneradorDeTokens.cs" />
     <Compile Include="Seguridad\Habdelrs\ManejadorDeValidacionDeTokens.cs" />
@@ -181,6 +182,10 @@
     <ProjectReference Include="..\BussniesLogic\BussniesLogic.csproj">
       <Project>{ABCBDE57-33B5-4E79-83A3-5C27F8477C58}</Project>
       <Name>BussniesLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EnumEstadosBardo\ConstEstadosBardo.csproj">
+      <Project>{2E43098A-2BD1-4FF5-9D0E-894ECFE53BE9}</Project>
+      <Name>ConstEstadosBardo</Name>
     </ProjectReference>
     <ProjectReference Include="..\ObligatorioProgramacion\ObligatorioProgramacion.csproj">
       <Project>{246D7537-60A6-4418-BD80-E868A00E43B4}</Project>
