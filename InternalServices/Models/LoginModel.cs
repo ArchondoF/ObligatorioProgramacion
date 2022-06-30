@@ -9,7 +9,7 @@ namespace InternalServices.Models
     public class LoginModel
     {
         [Required]
-        public string Mail { get; set; }
+        public string Correo { get; set; }
         [Required]
         public string Password { get; set; }
     }
