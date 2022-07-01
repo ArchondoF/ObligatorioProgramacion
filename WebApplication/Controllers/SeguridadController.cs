@@ -72,6 +72,10 @@ namespace WebApplication.Controllers
 
                     seguridadService.GuardarSesionUsuario(usuario);
 
+                    if (inicioSesionModel.Remember)
+                    {
+                        FormsAuthentication.SetAuthCookie(inicioSesionModel.Correo , inicioSesionModel.Remember);
+                    }
                     return RedirectToAction("Index", "Home");
                 }
             }

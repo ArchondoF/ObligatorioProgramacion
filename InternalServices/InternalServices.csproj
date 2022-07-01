@@ -156,6 +156,7 @@
     </Compile>
     <Compile Include="Models\FotoModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\PeleadorBardoModel.cs" />
     <Compile Include="Models\PeleadorModel.cs" />
     <Compile Include="Models\PeleadorModelAgregar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

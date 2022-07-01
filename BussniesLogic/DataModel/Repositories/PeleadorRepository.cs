@@ -26,9 +26,9 @@ namespace BussniesLogic.DataModel.Reposiroties
         {
             return this._context.Peleador.FirstOrDefault(p => p.IdPeliador == id);
         }
-        
+    
 
-         public List<Peleador> GetPeleadoresByLocalidad(long id , string localidad)
+        public List<Peleador> GetPeleadoresByLocalidad(long id , string localidad)
         {
             return this._context.Peleador.Where(p => p.IdPeliador != id && p.Ciudad == localidad).ToList();
         }
