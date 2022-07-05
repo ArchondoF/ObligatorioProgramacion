@@ -150,18 +150,15 @@ namespace InternalServices.Controllers
                         Bardos aux = new Bardos();
                         aux.IdPeleadorUno = peleadorUsuario.IdPeliador;
                         aux.IdPeleadorDos = idPeleador2;
+                        aux.Estado =  ConstEstadoBardo.PENDIENTE;
                         colBardos.Add(aux);
                         long idBardo = uow.BardoRepository.GetIdBardoByPeleadores(peleadorUsuario.IdPeliador , idPeleador2);
-                        EstadoBardos nuevoEstao = new EstadoBardos();
-                        nuevoEstao.IdBardo = idBardo;
-                        nuevoEstao.Estado = ConstEstadoBardo.PENDIENTE;
+                      
                     }
                     else
                     {
 
-                        long idBardo = uow.BardoRepository.GetIdBardoByPeleadores(peleadorUsuario.IdPeliador, idPeleador2);
-                        EstadoBardos nuevoEstao = uow.EstadoBardosRepository.GetEstadoBardosById(idBardo);
-                        nuevoEstao.Estado = ConstEstadoBardo.CONCRETADO;
+                        bardo.Estado = ConstEstadoBardo.CONCRETADO;
                     }
                     uow.SaveChanges();
                     uow.Commit();
@@ -190,7 +187,7 @@ namespace InternalServices.Controllers
                     List<Bardos> colBardos = uow.BardoRepository.GetBardosById(peleadorUsuario.IdPeliador);
                     foreach(var aux in colBardos)
                     {
-                        if (uow.EstadoBardosRepository.AnyBardoPendiente(aux.IdBardo))
+                        if (aux.Estado == ConstEstadoBardo.CONCRETADO)
                         {
                             Peleador peleadorAux = new Peleador();
                             if (aux.IdPeleadorUno != peleadorUsuario.IdPeliador)

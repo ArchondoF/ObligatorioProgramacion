@@ -16,7 +16,7 @@ namespace ObligatorioProgramacion.DataAcces
         public virtual DbSet<Fotos> Fotos { get; set; }
         public virtual DbSet<Peleador> Peleador { get; set; }
         public virtual DbSet<Bardos> Bardos { get; set; }
-        public virtual DbSet<EstadoBardos> EstadoBardos { get; set; }
+        public virtual DbSet<Estados> Estados { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -62,8 +62,29 @@ namespace ObligatorioProgramacion.DataAcces
                 .IsFixedLength();
 
             modelBuilder.Entity<Bardos>()
-                .HasMany(e => e.EstadoBardos)
-                .WithRequired(e => e.Bardos)
+               .Property(e => e.Ganador)
+               .IsFixedLength();
+
+            modelBuilder.Entity<Bardos>()
+                .Property(e => e.Estado)
+                .IsFixedLength();
+
+            modelBuilder.Entity<Bardos>()
+                .HasOptional(e => e.Bardos1)
+                .WithRequired(e => e.Bardos2);
+
+            modelBuilder.Entity<Estados>()
+                .Property(e => e.Id)
+                .IsFixedLength();
+
+            modelBuilder.Entity<Estados>()
+                .Property(e => e.Descripcion)
+                .IsFixedLength();
+
+            modelBuilder.Entity<Estados>()
+                .HasMany(e => e.Bardos)
+                .WithRequired(e => e.Estados)
+                .HasForeignKey(e => e.Estado)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Peleador>()
