@@ -132,7 +132,7 @@ namespace InternalServices.Controllers
                 }
             }
         }
-
+        [Authorize]
         [HttpPost]
         [Route("api/Peleador/HayBardo")]
         public IHttpActionResult HayBardo([FromBody] PeleadorModel peleadorUsuario , long idPeleador2)
@@ -151,14 +151,15 @@ namespace InternalServices.Controllers
                         aux.IdPeleadorUno = peleadorUsuario.IdPeliador;
                         aux.IdPeleadorDos = idPeleador2;
                         colBardos.Add(aux);
-                        long idBardo = uow.BardoRepository.GetIdBardoById(peleadorUsuario.IdPeliador , idPeleador2);
+                        long idBardo = uow.BardoRepository.GetIdBardoByPeleadores(peleadorUsuario.IdPeliador , idPeleador2);
                         EstadoBardos nuevoEstao = new EstadoBardos();
                         nuevoEstao.IdBardo = idBardo;
                         nuevoEstao.Estado = ConstEstadoBardo.PENDIENTE;
                     }
                     else
                     {
-                        long idBardo = uow.BardoRepository.GetIdBardoById(peleadorUsuario.IdPeliador, idPeleador2);
+
+                        long idBardo = uow.BardoRepository.GetIdBardoByPeleadores(peleadorUsuario.IdPeliador, idPeleador2);
                         EstadoBardos nuevoEstao = uow.EstadoBardosRepository.GetEstadoBardosById(idBardo);
                         nuevoEstao.Estado = ConstEstadoBardo.CONCRETADO;
                     }
@@ -166,6 +167,51 @@ namespace InternalServices.Controllers
                     uow.Commit();
 
                     return Ok();
+                }
+                catch (Exception ex)
+                {
+                    uow.Rollback();
+                    return InternalServerError(ex);
+                }
+            }
+        }
+
+
+        [Authorize]
+        [Route("api/Peleador/GetBardos")]
+        public IHttpActionResult GetBardos([FromBody] PeleadorModel peleadorUsuario)
+        {
+            using (UnitOfWork uow = new UnitOfWork())
+            {
+                uow.BeginTransaction();
+                try
+                {
+                    List<PeleadorBardoModel> peleadores = new List<PeleadorBardoModel>();
+                    List<Bardos> colBardos = uow.BardoRepository.GetBardosById(peleadorUsuario.IdPeliador);
+                    foreach(var aux in colBardos)
+                    {
+                        if (uow.EstadoBardosRepository.AnyBardoPendiente(aux.IdBardo))
+                        {
+                            Peleador peleadorAux = new Peleador();
+                            if (aux.IdPeleadorUno != peleadorUsuario.IdPeliador)
+                            {
+                                peleadorAux = uow.PeleadorRepository.GetPeleadorById(aux.IdPeleadorUno);
+                            }
+                            else
+                            {
+                                peleadorAux = uow.PeleadorRepository.GetPeleadorById(aux.IdPeleadorDos);
+                            }
+                            PeleadorBardoModel peleadorModel = new PeleadorBardoModel();
+                            peleadorModel.IdPeliador = peleadorAux.IdPeliador;
+                            peleadorModel.Nombre = peleadorAux.Nombre;
+                            peleadorModel.Apellido = peleadorAux.Apellido;
+                            peleadorModel.Ciudad = peleadorAux.Ciudad;
+                            peleadores.Add(peleadorModel);
+                        }
+                    }
+                    
+
+                    return Ok(peleadores);
                 }
                 catch (Exception ex)
                 {

@@ -23,9 +23,9 @@ namespace BussniesLogic.DataModel.Reposiroties
 
         public List<Bardos> GetBardosById(long id)
         {
-            return this._context.Bardos.Where(p => p.IdPeleadorUno == id).ToList();
+            return this._context.Bardos.Where(p => p.IdPeleadorUno == id || p.IdPeleadorDos == id).ToList();
         }
-        public long GetIdBardoById(long peleador1 , long peleador2)
+        public long GetIdBardoByPeleadores(long peleador1 , long peleador2)
         {
             Bardos bardo= this._context.Bardos.Where(b => b.IdPeleadorUno == peleador1 && b.IdPeleadorDos == peleador2 || b.IdPeleadorUno == peleador2 && b.IdPeleadorDos == peleador1).FirstOrDefault();
             return bardo.IdBardo;
@@ -37,9 +37,5 @@ namespace BussniesLogic.DataModel.Reposiroties
         }
 
 
-        public void RemoveBardo(Bardos bardo)
-        {
-            this._context.Bardos.Remove(bardo);
-        }
     }
 }

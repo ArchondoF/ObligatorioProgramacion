@@ -28,9 +28,9 @@ namespace BussniesLogic.DataModel.Repositories
         }
 
 
-        public List<EstadoBardos> GetEstadoBardos()
+        public bool AnyBardoPendiente(long idBardo)
         {
-            return this._context.EstadoBardos.ToList();
+            return this._context.EstadoBardos.Any(p => p.IdBardo == idBardo && p.Estado == "PENDIENTE");
         }
     }
 }

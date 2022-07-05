@@ -129,6 +129,7 @@
     <Compile Include="Models\InicioSesionModel.cs" />
     <Compile Include="Models\PeleadorModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\SeguridadApiHelper.cs" />
     <Compile Include="Services\SeguridadService.cs" />
   </ItemGroup>
   <ItemGroup>
