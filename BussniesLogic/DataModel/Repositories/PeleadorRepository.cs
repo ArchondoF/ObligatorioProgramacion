@@ -45,7 +45,10 @@ namespace BussniesLogic.DataModel.Reposiroties
         {
             return this._context.Peleador.ToList();
         }
-
+        public Peleador GetPeleadorByRefreshToken(string refreshToken)
+        {
+            return this._context.Peleador.FirstOrDefault(p => p.RefreshToken == refreshToken);
+        }
 
         public void RemovePeleador(Peleador peleador)
         {
