@@ -157,7 +157,6 @@ namespace InternalServices.Controllers
                     }
                     else
                     {
-
                         bardo.Estado = ConstEstadoBardo.CONCRETADO;
                     }
                     uow.SaveChanges();
