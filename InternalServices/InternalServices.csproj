@@ -154,13 +154,16 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\FotoModel.cs" />
-    <Compile Include="Models\LoginModel.cs" />
-    <Compile Include="Models\PeleadorModel.cs" />
-    <Compile Include="Models\PeleadorModelAgregar.cs" />
+    <Compile Include="Models\Peleador\FotoModel.cs" />
+    <Compile Include="Models\Peleador\LoginModel.cs" />
+    <Compile Include="Models\Peleador\PeleadorBardoModel.cs" />
+    <Compile Include="Models\Peleador\PeleadorModel.cs" />
+    <Compile Include="Models\Peleador\PeleadorModelAgregar.cs" />
+    <Compile Include="Models\Tokens\RefreshTokenModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Seguridad\GeneradorDeTokens.cs" />
     <Compile Include="Seguridad\Habdelrs\ManejadorDeValidacionDeTokens.cs" />
+    <Compile Include="Seguridad\ValidadorDeRefreshTokens.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />

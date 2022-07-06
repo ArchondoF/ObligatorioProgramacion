@@ -8,12 +8,6 @@ namespace ObligatorioProgramacion.DataAcces
 
     public partial class Bardos
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Bardos()
-        {
-            EstadoBardos = new HashSet<EstadoBardos>();
-        }
-
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public long IdBardo { get; set; }
@@ -25,7 +19,14 @@ namespace ObligatorioProgramacion.DataAcces
         [StringLength(20)]
         public string Ganador { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EstadoBardos> EstadoBardos { get; set; }
+        [Required]
+        [StringLength(10)]
+        public string Estado { get; set; }
+
+        public virtual Bardos Bardos1 { get; set; }
+
+        public virtual Bardos Bardos2 { get; set; }
+
+        public virtual Estados Estados { get; set; }
     }
 }

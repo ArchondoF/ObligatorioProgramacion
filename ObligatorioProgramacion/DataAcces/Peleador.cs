@@ -52,6 +52,8 @@ namespace ObligatorioProgramacion.DataAcces
         [StringLength(20)]
         public string Ciudad { get; set; }
 
+        public string RefreshToken { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Bardos> Bardos { get; set; }
 

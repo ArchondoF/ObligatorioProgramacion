@@ -52,5 +52,11 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TransferObjects\TransferObjects.csproj">
+      <Project>{2B2B24B9-8A99-44F5-A175-FD7608703C66}</Project>
+      <Name>TransferObjects</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

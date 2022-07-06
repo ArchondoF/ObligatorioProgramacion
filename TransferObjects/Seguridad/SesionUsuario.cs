@@ -17,5 +17,7 @@ namespace TransferObjects.Seguridad
         public string Ciudad { get; set; }
         public List<string> Fotos { get; set; }
         public string Token { get; set; }
+        public string RefreshToken { get; set;
+        }
     }
 }
