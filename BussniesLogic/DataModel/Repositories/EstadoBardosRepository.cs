@@ -17,20 +17,12 @@ namespace BussniesLogic.DataModel.Repositories
             this._context = context;
         }
 
-        public void AddEstadoBardo(EstadoBardos estadoBardo)
-        {
-            this._context.EstadoBardos.Add(estadoBardo);
-        }
-
-        public EstadoBardos GetEstadoBardosById(long id)
-        {
-            return this._context.EstadoBardos.Where(p => p.IdBardo == id).FirstOrDefault();
-        }
 
 
-        public bool AnyBardoPendiente(long idBardo)
+        public Estados GetEstadoBardosById(string id)
         {
-            return this._context.EstadoBardos.Any(p => p.IdBardo == idBardo && p.Estado == "PENDIENTE");
+            return this._context.Estados.Where(p => p.Id == id).FirstOrDefault();
         }
+
     }
 }
