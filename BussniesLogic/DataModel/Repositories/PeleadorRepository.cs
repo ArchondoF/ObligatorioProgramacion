@@ -36,9 +36,13 @@ namespace BussniesLogic.DataModel.Reposiroties
         {
             return this._context.Peleador.FirstOrDefault(p => p.Correo == Correo);
         }
+        public bool AnyCorreo(string Correo)
+        {
+            return this._context.Peleador.Any(p => p.Correo.ToUpper() == Correo.ToUpper());
+        }
         public long GetIdPeleadorByCorreo(string Correo)
         {
-            return this._context.Peleador.Where(p => p.Correo == Correo).Select(p => p.IdPeliador).FirstOrDefault();
+            return this._context.Peleador.Where(p => p.Correo.ToUpper() == Correo.ToUpper()).Select(p => p.IdPeliador).FirstOrDefault();
         }
 
         public List<Peleador> GetPeleadores()

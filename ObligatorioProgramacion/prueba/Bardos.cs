@@ -1,4 +1,4 @@
-namespace ObligatorioProgramacion.DataAcces
+namespace ObligatorioProgramacion.prueba
 {
     using System;
     using System.Collections.Generic;
@@ -28,6 +28,7 @@ namespace ObligatorioProgramacion.DataAcces
         public virtual Bardos Bardos2 { get; set; }
 
         public virtual Estados Estados { get; set; }
+
         public virtual Peleador Peleador { get; set; }
 
         public virtual Peleador Peleador1 { get; set; }

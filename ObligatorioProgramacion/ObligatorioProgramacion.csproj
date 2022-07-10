@@ -59,6 +59,11 @@
     <Compile Include="DataAcces\Contexto.cs" />
     <Compile Include="DataAcces\Peleador.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="prueba\Bardos.cs" />
+    <Compile Include="prueba\Estados.cs" />
+    <Compile Include="prueba\Fotos.cs" />
+    <Compile Include="prueba\Peleador.cs" />
+    <Compile Include="prueba\Prueba.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
