@@ -8,8 +8,8 @@ namespace EnumEstadosBardo
 {
     public class ConstEstadoBardo
     {
-        public const string PENDIENTE = "PENDIENTE";
-        public const string CONCRETADO = "CONCRETADO";
-        public const string FINALIZADO = "FINALIZADO";
+        public const long PENDIENTE = 1;
+        public const long CONCRETADO = 2;
+        public const long FINALIZADO = 3;
     }
 }

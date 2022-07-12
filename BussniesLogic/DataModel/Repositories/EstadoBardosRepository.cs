@@ -19,10 +19,7 @@ namespace BussniesLogic.DataModel.Repositories
 
 
 
-        public Estados GetEstadoBardosById(string id)
-        {
-            return this._context.Estados.Where(p => p.Id == id).FirstOrDefault();
-        }
+
 
     }
 }

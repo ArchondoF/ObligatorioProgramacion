@@ -26,5 +26,13 @@ namespace WebApplication.Controllers
 
             return View();
         }
+        public ActionResult IndexUser()
+        {
+            return View();
+        }
+        public ActionResult IndexRegistroSucefully()
+        {
+            return View();
+        }
     }
 }

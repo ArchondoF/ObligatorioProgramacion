@@ -1,0 +1,36 @@
+﻿@model WebApplication.Models.InicioSesionModel
+
+
+@{
+    ViewBag.Title = "RegistroExitoso";
+}
+
+
+<div class="container body-content" style="margin-top:40px">
+
+    <div class="jumbotron">
+        <div class="col-md-6">
+            <p class="lead">
+                <img src="~/images/login.jpeg" />
+            </p>
+        </div>
+        <div class="col-md-6 form-horizontal">
+            <section>
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    <h2>Registro con exito!</h2>
+                    <h3>Te has ingresado correctamente en el sistema</h3><br />
+                    <h3>Andas con ganas de Bardo inicia sesión.</h3>
+
+                    @Html.ActionLink("Iniciar Sesión", "InicioSesion", "Seguridad", new { area = "" }, new { @class = "btn btn-primary btn-sm", style = "font-family: 'Quicksand', sans-serif; font-weight:800; color:#fff; padding-inline:30px" })
+
+
+
+                }
+            </section>
+
+        </div>
+
+    </div>
+</div>

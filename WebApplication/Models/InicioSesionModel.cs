@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using WebApplication.Validations;
 
 namespace WebApplication.Models
 {
@@ -10,6 +11,7 @@ namespace WebApplication.Models
     {
         [Required]
         [Display(Name = "Correo")]
+
         public string Correo { get; set; }
         [Required]
         [Display(Name = "Contraseña")]
