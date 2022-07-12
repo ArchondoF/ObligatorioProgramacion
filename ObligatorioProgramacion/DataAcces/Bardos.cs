@@ -19,17 +19,6 @@ namespace ObligatorioProgramacion.DataAcces
         [StringLength(20)]
         public string Ganador { get; set; }
 
-        [Required]
-        [StringLength(10)]
-        public string Estado { get; set; }
-
-        public virtual Bardos Bardos1 { get; set; }
-
-        public virtual Bardos Bardos2 { get; set; }
-
-        public virtual Estados Estados { get; set; }
-        public virtual Peleador Peleador { get; set; }
-
-        public virtual Peleador Peleador1 { get; set; }
+        public long? Estado { get; set; }
     }
 }

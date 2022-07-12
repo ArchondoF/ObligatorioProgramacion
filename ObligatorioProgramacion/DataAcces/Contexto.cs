@@ -12,15 +12,21 @@ namespace ObligatorioProgramacion.DataAcces
         {
         }
 
-
-        public virtual DbSet<Fotos> Fotos { get; set; }
-        public virtual DbSet<Peleador> Peleador { get; set; }
         public virtual DbSet<Bardos> Bardos { get; set; }
         public virtual DbSet<Estados> Estados { get; set; }
-
+        public virtual DbSet<Fotos> Fotos { get; set; }
+        public virtual DbSet<Peleador> Peleador { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Bardos>()
+                .Property(e => e.Ganador)
+                .IsFixedLength();
+
+            modelBuilder.Entity<Estados>()
+                .Property(e => e.Descripcion)
+                .IsFixedLength();
+
             modelBuilder.Entity<Fotos>()
                 .Property(e => e.Ruta)
                 .IsUnicode(false);
@@ -38,14 +44,6 @@ namespace ObligatorioProgramacion.DataAcces
                 .IsFixedLength();
 
             modelBuilder.Entity<Peleador>()
-                .Property(e => e.Password)
-                .IsFixedLength();
-
-            modelBuilder.Entity<Peleador>()
-                .Property(e => e.PasswordSalt)
-                .IsFixedLength();
-
-            modelBuilder.Entity<Peleador>()
                 .Property(e => e.Resumen)
                 .IsFixedLength();
 
@@ -56,36 +54,6 @@ namespace ObligatorioProgramacion.DataAcces
             modelBuilder.Entity<Peleador>()
                 .Property(e => e.Ciudad)
                 .IsFixedLength();
-
-            modelBuilder.Entity<Bardos>()
-                .Property(e => e.Ganador)
-                .IsFixedLength();
-
-            modelBuilder.Entity<Bardos>()
-               .Property(e => e.Ganador)
-               .IsFixedLength();
-
-            modelBuilder.Entity<Bardos>()
-                .Property(e => e.Estado)
-                .IsFixedLength();
-
-            modelBuilder.Entity<Bardos>()
-                .HasOptional(e => e.Bardos1)
-                .WithRequired(e => e.Bardos2);
-
-            modelBuilder.Entity<Estados>()
-                .Property(e => e.Id)
-                .IsFixedLength();
-
-            modelBuilder.Entity<Estados>()
-                .Property(e => e.Descripcion)
-                .IsFixedLength();
-
-            modelBuilder.Entity<Estados>()
-                .HasMany(e => e.Bardos)
-                .WithRequired(e => e.Estados)
-                .HasForeignKey(e => e.Estado)
-                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Peleador>()
                 .HasMany(e => e.Fotos)

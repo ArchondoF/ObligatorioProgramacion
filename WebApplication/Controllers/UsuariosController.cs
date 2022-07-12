@@ -15,11 +15,33 @@ namespace WebApplication.Controllers
     [SesionRequerida]
     public class UsuariosController : Controller
     {
+        [HttpPost]
+        public ActionResult Perfil(PeleadorModel collection)
+        {
+            try
+            {
+                collection.Nombre = "hola";
 
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
         public ActionResult Perfil()
         {
-            return View();
+            var sesion = SeguridadService.ObtenerSesionUsuario();
+            PeleadorModel Peleador = new PeleadorModel();
+            Peleador.Nombre = sesion.Nombre;
+            Peleador.Apellido = sesion.Appelido;
+            Peleador.Ciudad = sesion.Ciudad;
+            Peleador.Pais = sesion.Pais;
+            Peleador.Resumen = sesion.Resumen;
+            return View(Peleador);
         }
+
+     
 
 
         public ActionResult Bardos()

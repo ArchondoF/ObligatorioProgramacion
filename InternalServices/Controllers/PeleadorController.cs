@@ -19,7 +19,7 @@ namespace InternalServices.Controllers
         [HttpPost]
         [AllowAnonymous]
         [Route("api/Peleador/AddPeleador")]
-        public IHttpActionResult AddPeleador([FromBody] PeleadorModelAgregar peleador)
+        public IHttpActionResult AddPeleador([FromBody] PeleadorModel peleador)
         {
             using (UnitOfWork uow = new UnitOfWork())
             {
@@ -55,7 +55,7 @@ namespace InternalServices.Controllers
 
                     foreach (var foto in peleadorEntity.Fotos)
                     {
-                        byte[] fotoBytes = Convert.FromBase64String(peleador.Foto);
+                        byte[] fotoBytes = Convert.FromBase64String(foto.Ruta);
                         string fotoPath = ConfigurationManager.AppSettings["FOTO_FILE_PATH"] + DateTime.Now.Ticks.ToString() + ".jpg";
 
                         File.WriteAllBytes(fotoPath, fotoBytes);
@@ -83,35 +83,6 @@ namespace InternalServices.Controllers
             }
         }
 
-        [HttpPost]
-        [Route("api/Peleador/AddFoto")]
-        public IHttpActionResult AddFoto([FromBody] FotoModel foto)
-        {
-            using (UnitOfWork uow = new UnitOfWork())
-            {
-                uow.BeginTransaction();
-
-                try
-                {
-                    var fotoEntity = new Fotos()
-                    {
-                        IdPeleador = foto.IdPeleador,
-                        Ruta = foto.Ruta,
-                    };
-
-                    uow.FotosRepository.AddFoto(fotoEntity);
-                    uow.SaveChanges();
-                    uow.Commit();
-
-                    return Ok();
-                }
-                catch (Exception ex)
-                {
-                    uow.Rollback();
-                    return InternalServerError(ex);
-                }
-            }
-        }
         
         [HttpGet]
         [Route("api/Peleador/ExisteMail")]

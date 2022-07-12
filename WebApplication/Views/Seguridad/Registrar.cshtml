@@ -14,7 +14,7 @@
         <div class="col-md-6 form-horizontal">
             <h2>Registrarte</h2>
             <section>
-                @using (Html.BeginForm())
+                @using (Html.BeginForm("Registrar", "Seguridad", FormMethod.Post, new { enctype = "multipart/form-data" }))
                 {
                     @Html.AntiForgeryToken()
                     <h4>Registrate en la mejor web para sacarte la rabia.</h4><br />
@@ -77,11 +77,11 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        @Html.LabelFor(model => model.Fotos, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.LabelFor(model => model.Foto, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            <input type="file" name="Foto1" accept=".png,.jpg,jpeg" />
-                            @Html.ValidationMessageFor(model => model.Fotos, "", new { @class = "text-danger" })
-                            @Html.ValidationMessageFor(model => model.Fotos, "", new { @class = "text-danger" })
+                            <input type="file" name="Foto" accept=".png,.jpg,jpeg" />
+                            @Html.ValidationMessageFor(model => model.Foto, "", new { @class = "text-danger" })
+                           
                         </div>
                     </div>
 

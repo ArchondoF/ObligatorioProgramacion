@@ -12,8 +12,6 @@ namespace ObligatorioProgramacion.DataAcces
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Peleador()
         {
-            Bardos = new HashSet<Bardos>();
-            Bardos1 = new HashSet<Bardos>();
             Fotos = new HashSet<Fotos>();
         }
 
@@ -53,12 +51,6 @@ namespace ObligatorioProgramacion.DataAcces
         public string Ciudad { get; set; }
 
         public string RefreshToken { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Bardos> Bardos { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Bardos> Bardos1 { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Fotos> Fotos { get; set; }

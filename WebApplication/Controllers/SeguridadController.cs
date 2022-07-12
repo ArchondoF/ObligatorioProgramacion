@@ -110,9 +110,7 @@ namespace WebApplication.Controllers
                 //Crear url para metodo de creacion de autores
                 Uri crearAutorUri = new Uri(webApiUrl + "Peleador/AddPeleador");
 
-                //Obtener datos de autenticacion de api interno
-
-                if (peleadorModel.Fotos != null)
+                if (peleadorModel.Foto != null)
                 {
                     peleadorModel.Fotos = new List<string>();
 

@@ -53,7 +53,7 @@ namespace WebApplication.Models
         [StringLength(20)]
         public string Ciudad { get; set; }
 
-        [StringLength(255)]
+
         public HttpPostedFileBase Foto { get; set; }
         public List<string> Fotos { get; set; }
     }
