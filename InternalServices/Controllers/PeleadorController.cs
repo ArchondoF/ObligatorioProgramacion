@@ -5,6 +5,8 @@ using InternalServices.Models;
 using ObligatorioProgramacion.DataAcces;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -17,7 +19,7 @@ namespace InternalServices.Controllers
         [HttpPost]
         [AllowAnonymous]
         [Route("api/Peleador/AddPeleador")]
-        public IHttpActionResult AddPeleador([FromBody] PeleadorModelAgregar peleador)
+        public IHttpActionResult AddPeleador([FromBody] PeleadorModel peleador)
         {
             using (UnitOfWork uow = new UnitOfWork())
             {
@@ -50,12 +52,23 @@ namespace InternalServices.Controllers
 
                     uow.PeleadorRepository.AddPeleador(peleadorEntity);
                     long idPeleador = uow.PeleadorRepository.GetIdPeleadorByCorreo(peleador.Correo);
-                    var fotoEntity = new Fotos()
+
+                    foreach (var foto in peleadorEntity.Fotos)
                     {
-                        IdPeleador = idPeleador,
-                        Ruta = peleador.Foto,
-                    };
-                    uow.FotosRepository.AddFoto(fotoEntity);
+                        byte[] fotoBytes = Convert.FromBase64String(foto.Ruta);
+                        string fotoPath = ConfigurationManager.AppSettings["FOTO_FILE_PATH"] + DateTime.Now.Ticks.ToString() + ".jpg";
+
+                        File.WriteAllBytes(fotoPath, fotoBytes);
+
+                        //Guardar foto BD
+                        Fotos fotoEntity = new Fotos()
+                        {
+                            IdPeleador = idPeleador,
+                            Ruta = fotoPath
+                        };
+
+                        uow.FotosRepository.AddFoto(fotoEntity);
+                    }
 
                     uow.SaveChanges();
                     uow.Commit();
@@ -70,37 +83,27 @@ namespace InternalServices.Controllers
             }
         }
 
-        [HttpPost]
-        [Route("api/Peleador/AddFoto")]
-        public IHttpActionResult AddFoto([FromBody] FotoModel foto)
-        {
-            using (UnitOfWork uow = new UnitOfWork())
-            {
-                uow.BeginTransaction();
-
-                try
-                {
-                    var fotoEntity = new Fotos()
-                    {
-                        IdPeleador = foto.IdPeleador,
-                        Ruta = foto.Ruta,
-                    };
-
-                    uow.FotosRepository.AddFoto(fotoEntity);
-                    uow.SaveChanges();
-                    uow.Commit();
-
-                    return Ok();
-                }
-                catch (Exception ex)
-                {
-                    uow.Rollback();
-                    return InternalServerError(ex);
-                }
-            }
-        }
-        [HttpGet]
         
+        [HttpGet]
+        [Route("api/Peleador/ExisteMail")]
+        public IHttpActionResult ExisteMail(string Correo)
+        {
+            try
+            {
+                using (var uow = new UnitOfWork())
+                {
+                    var existe = uow.PeleadorRepository.AnyCorreo(Correo);
+
+                    return Ok(existe);
+                }
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
+
+        [HttpGet]
         [Authorize]
         [Route("api/Peleador/GetPeleadoresByLocalidad")]
         public IHttpActionResult GetPeleadoresByLocalidad([FromBody] PeleadorModel peleadorUsuario)
@@ -174,23 +177,24 @@ namespace InternalServices.Controllers
         }
 
 
-        [Authorize]
+        //[Authorize]
         [Route("api/Peleador/GetBardos")]
-        public IHttpActionResult GetBardos([FromBody] PeleadorModel peleadorUsuario)
+        public IHttpActionResult GetBardos(string idPeleador)
         {
             using (UnitOfWork uow = new UnitOfWork())
             {
                 uow.BeginTransaction();
                 try
                 {
+                    long id = long.Parse(idPeleador);
                     List<PeleadorBardoModel> peleadores = new List<PeleadorBardoModel>();
-                    List<Bardos> colBardos = uow.BardoRepository.GetBardosById(peleadorUsuario.IdPeliador);
+                    List<Bardos> colBardos = uow.BardoRepository.GetBardosById(id);
                     foreach(var aux in colBardos)
                     {
                         if (aux.Estado == ConstEstadoBardo.CONCRETADO)
                         {
                             Peleador peleadorAux = new Peleador();
-                            if (aux.IdPeleadorUno != peleadorUsuario.IdPeliador)
+                            if (aux.IdPeleadorUno != id)
                             {
                                 peleadorAux = uow.PeleadorRepository.GetPeleadorById(aux.IdPeleadorUno);
                             }

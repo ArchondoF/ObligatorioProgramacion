@@ -3,12 +3,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Linq;
 
-namespace ObligatorioProgramacion.DataAcces
+namespace ObligatorioProgramacion.prueba
 {
-    public partial class Contexto : DbContext
+    public partial class Prueba : DbContext
     {
-        public Contexto()
-            : base("name=Contexto")
+        public Prueba()
+            : base("name=Prueba")
         {
         }
 
@@ -23,9 +23,27 @@ namespace ObligatorioProgramacion.DataAcces
                 .Property(e => e.Ganador)
                 .IsFixedLength();
 
+            modelBuilder.Entity<Bardos>()
+                .Property(e => e.Estado)
+                .IsFixedLength();
+
+            modelBuilder.Entity<Bardos>()
+                .HasOptional(e => e.Bardos1)
+                .WithRequired(e => e.Bardos2);
+
+            modelBuilder.Entity<Estados>()
+                .Property(e => e.Id)
+                .IsFixedLength();
+
             modelBuilder.Entity<Estados>()
                 .Property(e => e.Descripcion)
                 .IsFixedLength();
+
+            modelBuilder.Entity<Estados>()
+                .HasMany(e => e.Bardos)
+                .WithRequired(e => e.Estados)
+                .HasForeignKey(e => e.Estado)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Fotos>()
                 .Property(e => e.Ruta)
@@ -54,6 +72,18 @@ namespace ObligatorioProgramacion.DataAcces
             modelBuilder.Entity<Peleador>()
                 .Property(e => e.Ciudad)
                 .IsFixedLength();
+
+            modelBuilder.Entity<Peleador>()
+                .HasMany(e => e.Bardos)
+                .WithRequired(e => e.Peleador)
+                .HasForeignKey(e => e.IdPeleadorUno)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Peleador>()
+                .HasMany(e => e.Bardos1)
+                .WithRequired(e => e.Peleador1)
+                .HasForeignKey(e => e.IdPeleadorDos)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Peleador>()
                 .HasMany(e => e.Fotos)

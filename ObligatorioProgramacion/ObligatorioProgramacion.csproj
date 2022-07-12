@@ -54,9 +54,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataAcces\Bardos.cs" />
+    <Compile Include="DataAcces\Contexto.cs" />
     <Compile Include="DataAcces\Estados.cs" />
     <Compile Include="DataAcces\Fotos.cs" />
-    <Compile Include="DataAcces\Contexto.cs" />
     <Compile Include="DataAcces\Peleador.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

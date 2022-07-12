@@ -1,0 +1,53 @@
+﻿@model List<WebApplication.Models.PeleadorModel>
+@{
+    ViewBag.Title = "Bardos";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+<br />
+<br />
+<br />
+<h2>Bardos</h2>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model[0].Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model[0].Apellido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model[0].Ciudad)
+        </th>
+
+    </tr>
+    @if (Model != null)
+    {
+        foreach (var peleador in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => peleador.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => peleador.Apellido)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => peleador.Ciudad)
+                </td>
+
+                @*<td>
+                        @Html.ActionLink("Editar", "EditarAutor", new { autor.Id })
+                    </td>*@
+            </tr>
+        }
+    }
+    else
+    {
+        <p>Aun no tienes ningun bardo</p>
+    }
+
+
+
+
+</table>
